@@ -1,11 +1,13 @@
 package com.angerbytes;
 
 
+import com.angerbytes.models.Client;
 import com.angerbytes.models.Plan;
 
 public class Main {
     static void main() {
-        Plan basicPlan = new Plan("Básico","200Mbs", "69.90");
-        System.out.println(basicPlan);
+        Client cl1 = new Client("Jhon Doe", "11122233344","01/01/1999", "jhon@mail.com", "1122223333", "1st AV, 123 - NY");
+        System.out.println(cl1.cpfMask());
+        System.out.println(cl1.phoneMask());
     }
 }
