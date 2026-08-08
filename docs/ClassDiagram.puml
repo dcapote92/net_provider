@@ -7,7 +7,7 @@ class Provider{
 
 class Plan{
     + {static} YEARLY_DISCOUNT : BigDecimal
-    - String na
+    - String name
     - int speedMbps
     - BigDecimal monthlyPrice
     - BigDecimal yearlyPrice
