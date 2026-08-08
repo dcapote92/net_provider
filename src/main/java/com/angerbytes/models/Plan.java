@@ -6,14 +6,16 @@ import java.math.RoundingMode;
 public class Plan {
     public static final BigDecimal YEARLY_DISCOUNT = new BigDecimal("0.15");
 
-    private String name, speed, monthlyPrice;
+    private String name;
+    private int speedMbps;
+    private BigDecimal monthlyPrice;
     private final BigDecimal yearlyPrice;
 
-    public Plan(String name, String speed, String monthlyPrice) {
+    public Plan(String name, int speedMbps, String montlhyPrice) {
         this.name = name;
-        this.speed = speed;
-        this.monthlyPrice = monthlyPrice;
-        this.yearlyPrice = new BigDecimal(this.monthlyPrice).multiply(BigDecimal.valueOf(12)).multiply(BigDecimal.ONE.subtract(YEARLY_DISCOUNT)).setScale(2, RoundingMode.HALF_UP);
+        this.speedMbps = speedMbps;
+        this.monthlyPrice = new BigDecimal(montlhyPrice).setScale(2, RoundingMode.HALF_UP);
+        this.yearlyPrice = this.monthlyPrice.multiply(BigDecimal.valueOf(12)).multiply(BigDecimal.ONE.subtract(YEARLY_DISCOUNT)).setScale(2, RoundingMode.HALF_UP);
     }
 
     public String getName() {
@@ -24,38 +26,33 @@ public class Plan {
         this.name = name;
     }
 
-    public String getSpeed() {
-        return speed;
+    public int getSpeedMbps() {
+        return speedMbps;
     }
 
-    public void setSpeed(String speed) {
-        this.speed = speed;
+    public void setSpeedMbps(int speedMbps) {
+        this.speedMbps = speedMbps;
     }
 
-    public BigDecimal getMonthlyPrice() {
-        return new BigDecimal(monthlyPrice);
+    public BigDecimal getMontlhyPrice() {
+        return monthlyPrice;
     }
 
-    public void setMonthlyPrice(String monthlyPrice) {
-        this.monthlyPrice = monthlyPrice;
+    public void setMontlhyPrice(BigDecimal montlhyPrice) {
+        this.monthlyPrice = montlhyPrice;
     }
 
     public BigDecimal getYearlyPrice() {
         return yearlyPrice;
     }
 
-    public BigDecimal comparativeYearlyPrice() {
-        return getMonthlyPrice().multiply(BigDecimal.valueOf(12)).setScale(2, RoundingMode.HALF_UP);
-    }
-
     @Override
     public String toString() {
         return "Plan{" +
-                "name= '" + name + '\'' +
-                ", speed= '" + speed + '\'' +
-                ", Monthly Price= '" + monthlyPrice + '\'' +
-                ", Yearly Price= " + comparativeYearlyPrice() +
-                ", Yearly Price with discount= " + yearlyPrice +
+                "name='" + name + '\'' +
+                ", speed=" + speedMbps + "Mbps"+
+                ", monthlyPrice= R$ " + monthlyPrice +
+                ", yearlyPrice= R$ " + yearlyPrice +
                 '}';
     }
 }
