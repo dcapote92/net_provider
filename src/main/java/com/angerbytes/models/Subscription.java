@@ -65,4 +65,17 @@ public class Subscription {
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
     }
+
+    @Override
+    public String toString() {
+        return "Subscription{" +
+                "plan=" + plan +
+                ", client=" + client +
+                ", invoiceDate=" + invoiceDate +
+                ", paymentDate=" + paymentDate +
+                ", active=" + active +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                '}';
+    }
 }

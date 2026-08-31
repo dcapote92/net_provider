@@ -3,7 +3,10 @@ package com.angerbytes;
 
 import com.angerbytes.models.Client;
 import com.angerbytes.models.Plan;
+import com.angerbytes.models.Subscription;
 import com.angerbytes.utils.MaskText;
+
+import java.time.LocalDateTime;
 
 public class Main {
     static void main() {
@@ -13,8 +16,9 @@ public class Main {
         cl1.setEmail("daniel@email.com");
 
         Plan pl1 = new Plan("Basic", 250, "69.99");
-
-        System.out.println(cl1);
+        Subscription sub1 = new Subscription(pl1,cl1, LocalDateTime.now(), LocalDateTime.now());
+        cl1.setSubscriptions(sub1);
+        System.out.println(cl1.getSubscriptions());
         System.out.println(pl1);
     }
 }
