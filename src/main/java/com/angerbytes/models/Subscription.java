@@ -1,8 +1,10 @@
 package com.angerbytes.models;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 public class Subscription {
+    private final UUID id;
     private final Plan plan;
     private final Client client;
     private LocalDateTime invoiceDate, paymentDate;
@@ -11,6 +13,7 @@ public class Subscription {
     private LocalDateTime updatedAt;
 
     public Subscription(Plan plan, Client client, LocalDateTime invoiceDate, LocalDateTime paymentDate) {
+        this.id = UUID.randomUUID();
         this.plan = plan;
         this.client = client;
         this.invoiceDate = invoiceDate;
@@ -28,7 +31,9 @@ public class Subscription {
         return client;
     }
 
-
+    public UUID getId() {
+        return id;
+    }
 
     public LocalDateTime getInvoiceDate() {
         return invoiceDate;
