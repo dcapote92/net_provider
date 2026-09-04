@@ -1,36 +1,42 @@
 @startuml
-'https://plantuml.com/class-diagram
 
-class Provider{
+class Provider {
+    - UUID id
     - String name
 }
 
-class Plan{
-    + {static} YEARLY_DISCOUNT : BigDecimal
+class Plan {
+    - UUID id
+    - UUID providerId
     - String name
     - int speedMbps
     - BigDecimal monthlyPrice
     - BigDecimal yearlyPrice
 }
 
-class Client{
+class Client {
     - UUID id
+    - UUID providerId
     - String name
     - String email
     - String phone
 }
 
-class Subscription{
+class Subscription {
+    - UUID id
+    - UUID providerId
+    - Client client
+    - Plan plan
     - LocalDateTime invoiceDate
     - LocalDateTime paymentDate
     - boolean active
-
 }
 
+Provider "1" -- "*" Plan
+Provider "1" -- "*" Client
+Provider "1" -- "*" Subscription
 
-Provider "1" o-- "*"  Plan
 Client "1" -- "*" Subscription
 Plan "1" -- "*" Subscription
-
 
 @enduml

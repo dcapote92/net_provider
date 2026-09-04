@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.UUID;
 
 public class Plan {
-    public static final BigDecimal YEARLY_DISCOUNT = new BigDecimal("0.15");
 
     private final UUID id;
     private String name;
@@ -21,7 +20,8 @@ public class Plan {
         this.name = name;
         this.speedMbps = speedMbps;
         this.monthlyPrice = new BigDecimal(monthlyPrice).setScale(2, RoundingMode.HALF_UP);
-        this.yearlyPrice = this.monthlyPrice.multiply(BigDecimal.valueOf(12)).multiply(BigDecimal.ONE.subtract(YEARLY_DISCOUNT)).setScale(2, RoundingMode.HALF_UP);
+        this.yearlyPrice = this.monthlyPrice.multiply(BigDecimal.valueOf(12)).multiply(BigDecimal.ONE.
+                subtract(BigDecimal.valueOf(.15)).setScale(2, RoundingMode.HALF_UP));
     }
 
     public UUID getId() {
@@ -68,11 +68,11 @@ public class Plan {
     @Override
     public String toString() {
         return "Plan{" +
-                "yearlyPrice=" + yearlyPrice +
-                ", subscriptions=" + subscriptions +
-                ", monthlyPrice=" + monthlyPrice +
-                ", speedMbps=" + speedMbps +
                 ", name='" + name + '\'' +
+                ", subscriptions=" + subscriptions +
+                ", speedMbps=" + speedMbps +
+                ", monthlyPrice=" + monthlyPrice +
+                "yearlyPrice=" + yearlyPrice +
                 '}';
     }
 }
