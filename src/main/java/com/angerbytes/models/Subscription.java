@@ -74,7 +74,7 @@ public class Subscription {
     @Override
     public String toString() {
         return "Subscription{" +
-                "plan=" + plan +
+                ", plan=" + plan +
                 ", client=" + client +
                 ", invoiceDate=" + invoiceDate +
                 ", paymentDate=" + paymentDate +
